@@ -1,10 +1,12 @@
 package id.ac.uinjkt.cas.casclient;
 
+import id.ac.uinjkt.cas.casclient.services.CustomUserDetailsService;
 import javax.servlet.http.HttpSessionEvent;
 import org.jasig.cas.client.session.SingleSignOutFilter;
 import org.jasig.cas.client.session.SingleSignOutHttpSessionListener;
 import org.jasig.cas.client.validation.Cas30ServiceTicketValidator;
 import org.jasig.cas.client.validation.TicketValidator;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
@@ -26,6 +28,9 @@ public class CasclientApplication {
         SpringApplication.run(CasclientApplication.class, args);
     }
 
+    @Autowired
+    private CustomUserDetailsService customUserDetailsService;
+    
     @Bean
     public ServiceProperties serviceProperties() {
         ServiceProperties serviceProperties = new ServiceProperties();
@@ -57,9 +62,11 @@ public class CasclientApplication {
         CasAuthenticationProvider provider = new CasAuthenticationProvider();
         provider.setServiceProperties(serviceProperties());
         provider.setTicketValidator(ticketValidator());
-        provider.setUserDetailsService(
+        provider.setUserDetailsService(customUserDetailsService);
+   /*     provider.setUserDetailsService(
                 s -> new User("casuser", "Mellon", true, true, true, true,
                         AuthorityUtils.createAuthorityList("ROLE_ADMIN")));
+*/
         provider.setKey("CAS_PROVIDER_LOCALHOST_9000");
         return provider;
     }
