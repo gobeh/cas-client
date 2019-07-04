@@ -15,8 +15,6 @@ import org.springframework.context.event.EventListener;
 import org.springframework.security.cas.ServiceProperties;
 import org.springframework.security.cas.authentication.CasAuthenticationProvider;
 import org.springframework.security.cas.web.CasAuthenticationEntryPoint;
-import org.springframework.security.core.authority.AuthorityUtils;
-import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.authentication.logout.LogoutFilter;
 import org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler;
@@ -63,7 +61,7 @@ public class CasclientApplication {
         provider.setServiceProperties(serviceProperties());
         provider.setTicketValidator(ticketValidator());
         provider.setUserDetailsService(customUserDetailsService);
-   /*     provider.setUserDetailsService(
+        /*     provider.setUserDetailsService(
                 s -> new User("casuser", "Mellon", true, true, true, true,
                         AuthorityUtils.createAuthorityList("ROLE_ADMIN")));
 */
