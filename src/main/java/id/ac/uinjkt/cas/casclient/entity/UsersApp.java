@@ -6,7 +6,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import org.hibernate.annotations.Type;
 
-@Entity(name = "users")
+@Entity(name = "userclient")
 public class UsersApp {
 
     @Id
@@ -17,7 +17,7 @@ public class UsersApp {
     String email;
 
     @Type(type = "text")
-    String password;
+    String role;
 
     Integer active;
 
@@ -37,12 +37,12 @@ public class UsersApp {
         this.email = email;
     }
 
-    public String getPassword() {
-        return password;
+    public String getRole() {
+        return role;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setRole(String role) {
+        this.role = role;
     }
 
     public Integer getActive() {

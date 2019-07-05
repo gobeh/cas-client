@@ -18,13 +18,17 @@ public class MyUserDetails implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        final List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority("ADMIN"));
+        final List<GrantedAuthority> authorities = Collections.singletonList(new SimpleGrantedAuthority(users.getRole()));
         return authorities;
     }
 
     @Override
     public String getPassword() {
-        return users.getPassword();
+        return null;
+    }
+
+    public String getRole() {
+        return users.getRole();
     }
 
     @Override

@@ -7,10 +7,8 @@
 <h2>This is a Secured Page</h2>
 <h3>Welcome home <span style="color:cadetblue;">${username!""}</span> as <span style="color:cadetblue;">${role!""} </h3>
 <br>
-<a href="/user/halo">user</a>
-<br>
-<a href="/admin/halo">admin</a>
-<br>
+INI ADALAH HALAMAN USER
+
 <a href="/logout">Logout</a>
 </body>
 </html>

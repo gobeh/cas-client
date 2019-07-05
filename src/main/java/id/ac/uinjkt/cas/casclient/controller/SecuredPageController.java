@@ -1,5 +1,6 @@
 package id.ac.uinjkt.cas.casclient.controller;
 
+import java.security.Principal;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -14,11 +15,44 @@ public class SecuredPageController {
     public String index(ModelMap modelMap) {
         Authentication auth = SecurityContextHolder.getContext()
                 .getAuthentication();
+
         if (auth != null
                 && auth.getPrincipal() != null
                 && auth.getPrincipal() instanceof UserDetails) {
             modelMap.put("username", ((UserDetails) auth.getPrincipal()).getUsername());
+            modelMap.put("role", auth.getAuthorities().toString());
+
         }
         return "secure/index";
+    }
+
+    @GetMapping("/admin/halo")
+    public String haloAdmin(ModelMap modelMap) {
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+
+        if (auth != null
+                && auth.getPrincipal() != null
+                && auth.getPrincipal() instanceof UserDetails) {
+            modelMap.put("username", ((UserDetails) auth.getPrincipal()).getUsername());
+            modelMap.put("role", auth.getAuthorities().toString());
+
+        }
+        return "secure/haloadmin";
+    }
+
+    @GetMapping("/user/halo")
+    public String haloUser(ModelMap modelMap) {
+        Authentication auth = SecurityContextHolder.getContext()
+                .getAuthentication();
+
+        if (auth != null
+                && auth.getPrincipal() != null
+                && auth.getPrincipal() instanceof UserDetails) {
+            modelMap.put("username", ((UserDetails) auth.getPrincipal()).getUsername());
+            modelMap.put("role", auth.getAuthorities().toString());
+
+        }
+        return "secure/halouser";
     }
 }

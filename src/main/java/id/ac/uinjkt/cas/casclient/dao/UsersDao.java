@@ -6,12 +6,11 @@
 package id.ac.uinjkt.cas.casclient.dao;
 
 import id.ac.uinjkt.cas.casclient.entity.UsersApp;
-import java.util.Optional;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 public interface UsersDao extends PagingAndSortingRepository<UsersApp, String> {
 
-    @Query("SELECT u FROM users u WHERE u.email = :email")
+    @Query("SELECT u FROM userclient u WHERE u.email = :email AND u.active = 1")
     public UsersApp findByEmailUsers(String email);
 }
