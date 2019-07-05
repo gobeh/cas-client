@@ -42,13 +42,13 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http
                 .authorizeRequests()
-                .regexMatchers("/secured.*", "/login", "/admin", "/user")
+                .regexMatchers("/secured.*", "/login")
                 .authenticated()
                 .and()
                 .authorizeRequests()
-               // .antMatchers("/admin/halo").hasRole("ADMIN")
-               // .antMatchers("/user/halo").hasRole("USER")
-               // .anyRequest().authenticated()
+                .antMatchers("/admin/halo").hasRole("ADMIN")
+                .antMatchers("/user/halo").hasRole("USER")
+                // .anyRequest().authenticated()
                 .and()
                 .authorizeRequests()
                 .regexMatchers("/")
